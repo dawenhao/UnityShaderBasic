@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: NormalMapInTangentSpace
-  m_Shader: {fileID: 4800000, guid: f0a65d39ab3256942a984caf61788b09, type: 3}
+  m_Name: NormalMapInWorldSpace
+  m_Shader: {fileID: 4800000, guid: b25612afc3e1317408a8d1469ea9614c, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0

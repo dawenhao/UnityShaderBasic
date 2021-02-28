@@ -69,6 +69,7 @@ Shader "Wenhao/NormalMapInTangentSpace"
                 fixed4 packedNormal = tex2D(_BumpMap, i.uv.zw);
 
                 fixed3 tangentNormal = UnpackNormal(packedNormal);
+                tangentNormal *= _BumpScale;
 
                 fixed3 albedo = tex2D(_MainTex, i.uv.xy) * _Color.rgb;
 
