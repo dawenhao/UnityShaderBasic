@@ -1,14 +1,13 @@
-// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
-
-// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
-
-// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
-
 Shader "wenhao/Scan3"
 {
     Properties
     {
         _MainTex("MainTex", 2D) = "white" {}
+        _FPower("FPower", float) = 0.5
+        _FScale("FScale", float) = 0.5
+        _FBias("FBias", float) = 0.5
+        _Color0("Color0", Color) = (1, 1, 1, 1)
+        _Color1("Color1", Color) = (1, 1, 1, 1)
     }
         SubShader
     {
@@ -22,6 +21,11 @@ Shader "wenhao/Scan3"
 
             sampler2D _MainTex;
             float4 _MainTex_ST;
+            float _FPower;
+            float _FScale;
+            float _FBias;
+            float4 _Color0;
+            float4 _Color1;
 
             struct appdata
             {
@@ -51,8 +55,10 @@ Shader "wenhao/Scan3"
             {
                 float3 normWorldView = normalize(i.worldView);
                 float3 normWorldNormal = normalize(i.worldNormal);
-                fixed3 color = saturate(1- dot(normWorldView, i.worldNormal));
-                return float4(color,1);
+
+                float alpha = saturate(pow((1 - dot(normWorldView, i.worldNormal)), _FPower) * _FScale + _FBias);
+                fixed4 color = lerp(_Color0, _Color1, alpha);
+                return color;
             }
             ENDCG
         }
